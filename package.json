@@ -1,0 +1,22 @@
+{
+  "name": "led-controller",
+  "version": "1.0.0",
+  "description": "Led Controller",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SerafinTech/node-led-controller.git"
+  },
+  "author": "Jason Serafin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SerafinTech/node-led-controller/issues"
+  },
+  "homepage": "https://github.com/SerafinTech/node-led-controller#readme",
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}
