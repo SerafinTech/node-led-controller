@@ -43,7 +43,7 @@ function convertRGBtoRGBW(r, g, b) {
 }
 
 // return gamma correction array
-function createGammaCorrectionArray(gamma) {
+function createGammaCorrectionArray(gamma = 2.8) {
   let gammaArray = []
 
   for (let i = 0; i < 256; i++) {

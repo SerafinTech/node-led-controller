@@ -53,7 +53,7 @@ napi_value spiSendData(napi_env env, napi_callback_info info) {
     status = napi_get_cb_info(env, info, &argc, argv, NULL, NULL);
     status = napi_get_buffer_info(env, argv[0], &dataPtr, &dataLength);
     ftstatus = SPI_Write(ftHandle, dataPtr, dataLength, &sizeTransferred, SPI_TRANSFER_OPTIONS_SIZE_IN_BYTES);
-
+    ftstatus = SPI_Write(ftHandle, dataPtr, dataLength, &sizeTransferred, SPI_TRANSFER_OPTIONS_SIZE_IN_BYTES);
     napi_value ret;
     status = napi_create_int32(env, sizeTransferred, &ret);
 
@@ -79,7 +79,7 @@ napi_value spiInit(napi_env env, napi_callback_info info) {
 	ChannelConfig channelConf = {0};
 	uint8 address = 0;
 	uint32 channels = 0;
-	uint8 latency = 80;
+	uint8 latency = 1;
 
     
     channelConf.ClockRate = clockSetpoint;
@@ -105,7 +105,7 @@ napi_value spiInit(napi_env env, napi_callback_info info) {
     status = napi_set_named_property(env, payload, "serialNumber", serialNumber);
     status = napi_set_named_property(env, payload, "description", description);
     status = napi_set_named_property(env, payload, "freq", freq);
-
+    
     ftstatus = SPI_OpenChannel(0, &ftHandle);
     ftstatus = SPI_InitChannel(ftHandle,&channelConf);
     return payload;

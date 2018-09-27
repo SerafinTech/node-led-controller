@@ -1,6 +1,16 @@
-const led = require('./drivers/leds/apa102c')
+const LedDriver = require('./drivers/ftdi')
+const ledDriver = new LedDriver('apa102c', 768, 1)
+ledDriver.init()
 
-const string = new led(16)
+const Panel = require('./layouts/panel')
+
+const panel = new Panel()
+
+
+panel.addBLHSM(4, 4)
+panel.addTLVSM(2, 2)
+console.log(panel.addTLVSM(2, 2, undefined , undefined , 0, 2))
+
 
 var stdin = process.stdin
 stdin.setRawMode( true )
@@ -8,19 +18,13 @@ stdin.resume()
 stdin.setEncoding( 'utf8' )
 
 
-const ftdi = require('./build/Release/ledftdi')
-
-ftdi.spiInit(string.frequency)
-
-ftdi.spiSendData(string.getBuffer())
-
 let color = {
   r: 0,
   g: 0,
   b: 0,
   w: -1
 }
-
+ledDriver.sendLeds()
 stdin.on( 'data', function( key ){
   color.w = -1
   // ctrl-c ( end of text )
@@ -51,11 +55,11 @@ stdin.on( 'data', function( key ){
   if (key == 'e' && color.b < 255) {
     color.b++
   }
-  for (let i = 0; i < 16; i++) {
-    string.setLedColor(i, color.r, color.g, color.b)
+  for (let i = 0; i < 768; i++) {
+    ledDriver.setLedColor(i, color.r, color.g, color.b, 20)
   }
 
-  ftdi.spiSendData(string.getBuffer())
+  ledDriver.sendLeds()
   
 })
 
