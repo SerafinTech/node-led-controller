@@ -1,5 +1,5 @@
 const LedDriver = require('./drivers/ftdi')
-const ledDriver = new LedDriver('apa102c', 768, 1)
+const ledDriver = new LedDriver('ws2812b', 256, 1)
 ledDriver.init()
 
 const Panel = require('./layouts/panel')
@@ -7,9 +7,9 @@ const Panel = require('./layouts/panel')
 const panel = new Panel()
 
 
-panel.addBLHSM(4, 4)
-panel.addTLVSM(2, 2)
-console.log(panel.addTLVSM(2, 2, undefined , undefined , 0, 2))
+panel.addBLHSM(16, 16)
+//panel.addTLVSM(2, 2)
+//console.log(panel.addTLVSM(2, 2, undefined , undefined , 0, 2))
 
 
 var stdin = process.stdin
@@ -55,8 +55,8 @@ stdin.on( 'data', function( key ){
   if (key == 'e' && color.b < 255) {
     color.b++
   }
-  for (let i = 0; i < 768; i++) {
-    ledDriver.setLedColor(i, color.r, color.g, color.b, 20)
+  for (let i = 0; i < 256; i++) {
+    ledDriver.setLedColor(i, color.r, color.g, color.b)
   }
 
   ledDriver.sendLeds()
