@@ -42,8 +42,8 @@ function convertRGBtoRGBW(r, g, b) {
   }
 }
 
-// return gamma correction array
-function createGammaCorrectionArray(gamma = 2.8) {
+// return gamma correction array. When gamma = 1 corected value equals equals corrected value.
+function createGammaCorrectionArray(gamma = 1) {
   let gammaArray = []
 
   for (let i = 0; i < 256; i++) {

@@ -1,7 +1,7 @@
 const util = require('./util')
 
 class ftdi {
-  constructor(ledDriver, numLeds, gammaCorrection = 2.8) {
+  constructor(ledDriver, numLeds, gammaCorrection = 1) {
     const LedDriver = require('./leds/'+ledDriver)
     this.ledDriver = new LedDriver(numLeds)
     this.spiDriver = require('../build/Release/ledftdi')

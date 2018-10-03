@@ -13,11 +13,7 @@ static FT_HANDLE ftHandle;
 napi_value Init(napi_env env, napi_value exports) {
     napi_status status;
     napi_value fn;
-
-    // Arguments 2 and 3 are function name and length respectively
-    // We will leave them as empty for this example
     
-
     status = napi_create_function(env, NULL, 0, spiInit, NULL, &fn);
     if (status != napi_ok) {
         napi_throw_error(env, NULL, "Unable to wrap native function");
