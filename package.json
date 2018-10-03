@@ -23,7 +23,6 @@
     "bmp-js": "^0.1.0",
     "fluent-ffmpeg": "^2.1.2",
     "lame": "^1.2.4",
-    "serafintech-jimp": "^0.3.6",
     "speaker": "^0.4.1"
   }
 }

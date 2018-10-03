@@ -1,7 +1,7 @@
 class apa102c {
   constructor(n) {
     this.ledCount = n
-    this.frequency = 4000000
+    this.frequency = 5000000
     this.ledBuffer = Buffer.alloc(this.ledCount * 4, 'E0000000', 'hex')
     this.ledBuffer = Buffer.concat([Buffer.alloc(4, '00000000', 'hex'), this.ledBuffer, Buffer.alloc(4, '00000000', 'hex')])
   }
